@@ -1,0 +1,31 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <div id="postlist">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="text-center">
+              <div class="row">
+                <div class="col-sm-9">
+                  <h3 class="pull-left"><%= @article.title %></h3>
+                </div>
+                <div class="col-sm-3">
+                  <h4 class="pull-right">
+                    <small><em><%= @article.updated_at%></em></small>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>   
+          <div class="panel-body">
+            <%=@article.content %> <br><a> Author : <%= @article.author %></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="btn btn-info"><%= link_to 'View All', articles_path %></div>
+</div>

@@ -1,0 +1,8 @@
+<%= form_for @article, url: articles_path do |f| %>
+  <p>Title: <%=f.text_field :title %></p>
+  <p>Content: <%=f.text_area :content %></p>
+  <p>Create: <%=f.submit %></p>
+<% end %> 
+<% flash.each do |key,value| %>
+  <p> -> <%= value %> </p>
+<% end %> 

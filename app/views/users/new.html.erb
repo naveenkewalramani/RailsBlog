@@ -1,0 +1,43 @@
+
+<div class="container-fluid" style="border:1px solid black;padding:10px;margin:2px;">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-6">
+      <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="pill" href="#home">Signup</a></li>
+        <li><a data-toggle="pill" href="#menu1">Login</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <h3>Sign Up</h3>
+          <%=form_for @user, url: users_signup_path ,method: :get do |form| %>
+            <p>Username : <%= form.text_field :username %></p>
+            <p>Email : <%= form.text_field :email %></p>
+            <p>Password : <%= form.password_field :password %></p>
+            <p> Confirmation Password : <%= form.password_field :password_confirmation %></p>
+            <p><%= form.submit 'SignUp' %></p>
+          <% end %>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+          <h3>Login</h3>
+          <%=form_for @user, url: users_signin_path, method: :get do |form| %>
+            <p>Email : <%= form.text_field :email%></p>
+            <p>Password : <%= form.password_field :password %></p>
+            <p><%= form.submit 'SignIn'%></p>
+          <%end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <% flash.each do |key,value| %>
+      <p> -> : <%= value %> </p>
+    <%end%>
+  </div>
+  <div class="col-lg-3"></div>
+</div>
