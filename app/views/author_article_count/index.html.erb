@@ -1,0 +1,37 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">RailsBlog</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="#"></a></li> -->
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><p>Search Form here</p></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%=link_to 'View All' , articles_path %></li>
+      <% if session[:authenticate]==false %>
+        <li><%= link_to 'Signin/SignUp', users_new_path  %></li>
+      <% else %>
+        <li><a>Hi <%=  session[:username] %></a></li>
+        <li><%=link_to 'Logout', users_logout_path %></li>
+        <li><%=link_to 'My Articles' ,my_articles_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<table class="table table-striped table-bordered table-hover">
+    <tr class="row">
+      <th class="col-lg-6" scope="col">Author</th>
+      <th class="col-lg-6" scope="col">Articles Count</th>
+    </tr>
+    <% @author_article_count.each do |author| %>
+      <tr class="row">
+        <td><%= author.author_name %></td>
+        <td><%= author.count %></td>
+      </tr>
+    <% end %>
+  </table>
+  
