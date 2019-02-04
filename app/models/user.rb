@@ -2,6 +2,7 @@
 class User < ApplicationRecord
   
   validates_confirmation_of :password
+  
 
   def check_params(user_params)
     if user_params[:username]=="" || user_params[:email]==""

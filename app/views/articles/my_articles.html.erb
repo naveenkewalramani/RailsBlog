@@ -1,3 +1,27 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">RailsBlog</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="#"></a></li> -->
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><p>Search Form here</p></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%=link_to 'View All' , articles_path %></li>
+      <% if session[:authenticate]==false %>
+        <li><%= link_to 'Signin/SignUp', users_new_path  %></li>
+      <% else %>
+        <li><a>Hi <%=  session[:username] %></a></li>
+        <li><%=link_to 'Logout', users_logout_path %></li>
+        <li><%=link_to 'My Articles' ,my_articles_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
 <div>
   <table class="table table-striped table-bordered table-hover">
     <tr>
@@ -5,6 +29,9 @@
       <th scope="col">Content</th>
       <th scope="col">Author</th>
       <th scope="col">View</th>
+      <% if session[:authenticate]== true %>
+          <th scope="col">Edit</th>
+        <% end %>
     </tr>
     <% @article.each do |article| %>
       <tr>
@@ -12,6 +39,9 @@
         <td><%= article.content %></td>
         <td><%= article.author %></td>
         <td><%= link_to 'Show', article_path(article) %></td>
+        <% if session[:authenticate]== true %>
+          <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

@@ -1,8 +1,34 @@
-<%= form_for @article, url: articles_path do |f| %>
-  <p>Title: <%=f.text_field :title %></p>
-  <p>Content: <%=f.text_area :content %></p>
-  <p>Create: <%=f.submit %></p>
-<% end %> 
-<% flash.each do |key,value| %>
-  <p> -> <%= value %> </p>
-<% end %> 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">RailsBlog</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="#"></a></li> -->
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><p>Search Form here</p></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%=link_to 'View All' , articles_path %></li>
+      <% if session[:authenticate]==false %>
+        <li><%= link_to 'Signin/SignUp', users_new_path  %></li>
+      <% else %>
+        <li><a>Hi <%=  session[:username] %></a></li>
+        <li><%=link_to 'Logout', users_logout_path %></li>
+        <li><%=link_to 'My Articles' ,my_articles_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<div>
+  <%= form_for @article, url: articles_path do |f| %>
+    <p>Title: <%=f.text_field :title %></p>
+    <p>Content: <%=f.text_area :content %></p>
+    <p>Create: <%=f.submit %></p>
+  <% end %> 
+  <% flash.each do |key,value| %>
+    <p> <%= value %> </p>
+  <% end %> 
+</div>

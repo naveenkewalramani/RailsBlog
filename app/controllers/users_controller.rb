@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   def logout 
+    session[:user_id]=nil
     session[:username]=nil
     session[:authenticate]=false
     session[:expires_at] = Time.current
@@ -45,6 +46,7 @@ class UsersController < ApplicationController
   end
   
   def set_session(user_params)
+    session[:user_id] = User.where(email: user_params[:email]).first[:id]
     session[:username] = User.where(email: user_params[:email]).first[:username]
     session[:authenticate] = true
     session[:expires_at] = Time.current + 10.minutes
