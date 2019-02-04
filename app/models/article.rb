@@ -5,7 +5,6 @@ class Article < ApplicationRecord
 
   after_create :count_process
   def count_process
-    puts self.author
     CountWorker.perform_async(self.author)
   end
 

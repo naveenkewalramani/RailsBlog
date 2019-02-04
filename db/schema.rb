@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_065215) do
+ActiveRecord::Schema.define(version: 2019_02_04_092032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,9 @@ ActiveRecord::Schema.define(version: 2019_02_04_065215) do
     t.string "author", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tags"
     t.index ["author"], name: "index_articles_on_author"
+    t.index ["tags"], name: "index_articles_on_tags"
     t.index ["title"], name: "index_articles_on_title"
   end
 
@@ -31,6 +33,11 @@ ActiveRecord::Schema.define(version: 2019_02_04_065215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_name"], name: "index_author_article_counts_on_author_name"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name"
+    t.index ["tag_name"], name: "index_tags_on_tag_name"
   end
 
   create_table "users", force: :cascade do |t|

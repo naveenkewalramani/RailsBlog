@@ -22,13 +22,16 @@
     </ul>
   </div>
 </nav>
-<div>
-  <%= form_for @article, url: articles_path do |f| %>
-    <p>Title: <%=f.text_field :title %></p>
-    <p>Content: <%=f.text_area :content %></p>
-    <p>Create: <%=f.submit %></p>
-  <% end %> 
-  <% flash.each do |key,value| %>
-    <p> <%= value %> </p>
-  <% end %> 
+<div class="container">
+  <article>
+    <%= form_for @article, url: articles_path do |f| %>
+      <p>Title:<br/><%=f.text_field :title %></p>
+      <p>Content:<br/><%=f.text_area :content ,size: "100x18" %></p>
+      <p>Tags:<br/><%=f.collection_select :tags, Tag.all, :id, :tag_name %>
+      <p>Create: <%=f.submit %></p>
+    <% end %> 
+    <% flash.each do |key,value| %>
+      <p> <%= value %> </p>
+    <% end %>
+  </article> 
 </div>

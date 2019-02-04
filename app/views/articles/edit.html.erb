@@ -26,6 +26,7 @@
   <%= form_for @article do |f| %>
     <p>Title: <%=f.text_field :title %></p>
     <p>Content: <%=f.text_area :content %></p>
+    <p>Tags:<br/><%=f.collection_select :tags, Tag.all, :id, :tag_name %>
     <p>Create: <%=f.submit 'update' %></p>
   <% end %>  
 </div>

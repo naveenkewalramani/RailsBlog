@@ -42,18 +42,25 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @article.tags = Tag.where(id: @article.tags.to_i).first[:tag_name]
   end
 
   def index
-    @article = Article.all
+    @article = Article.limit(15)
+    @article.each do |x|
+      x.tags = Tag.where(id: x.tags.to_i).first[:tag_name]
+    end
   end
 
   def my_articles
     @article = Article.where(author: session[:username]).order('id ASC')
+    @article.each do |x|
+      x.tags = Tag.where(id: x.tags.to_i).first[:tag_name]
+    end
   end
   
   private
   def article_params
-    params.require(:article).permit(:title,:content,:author)
+    params.require(:article).permit(:title,:content,:author ,:tags)
   end
 end
