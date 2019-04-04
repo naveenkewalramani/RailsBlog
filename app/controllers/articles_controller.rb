@@ -58,7 +58,19 @@ class ArticlesController < ApplicationController
       x.tags = Tag.where(id: x.tags.to_i).first[:tag_name]
     end
   end
-  
+
+  def upvote
+    @article = Article.find(params[:id])
+    @article.update(:likes @article.likes+=1)
+    return 
+  end
+
+  def downvote
+    @article = Article.find(params[:id])
+    @article.update(:dislikes @article.dislikes+=1)
+    return 
+  end
+
   private
   def article_params
     params.require(:article).permit(:title,:content,:author ,:tags)
